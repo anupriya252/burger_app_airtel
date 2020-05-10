@@ -1,26 +1,30 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import { FoodItemTable } from './components/food-item-table';
+import {inject, observer, Provider} from 'mobx-react';
+import FoodStoreInstance from './store/food-store';
+import { OrderSummary } from './components/order-summary';
+import { FilterList } from './components/filters/filter-list';
 
-function App() {
+export interface IFoodApp {
+  foodStoreValue?: any;
+}
+export const FoodContext:any = createContext(null);
+const App: React.FC <IFoodApp> = props => {
+  
+  // const { foodStoreValue } = props;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="burger-app">
+      <h1> Food Items </h1>
+      <FoodContext.Provider value={FoodStoreInstance} >
+        <div className="layout">
+          <FilterList />
+          <FoodItemTable/>
+          <OrderSummary />
+        </div>
+      </FoodContext.Provider>
     </div>
   );
 }
 
-export default App;
+export default observer(App);

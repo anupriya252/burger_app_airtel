@@ -1,0 +1,22 @@
+.layout {
+  display: flex;
+  justify-content: space-around;
+
+    .order-summary {
+      border: 1px solid;
+      padding: 16px;
+
+    }
+
+    .food-item-table {
+      border: 1px solid;
+  padding: 16px;
+
+    }
+
+    .filter-list {
+      border: 1px solid;
+  padding: 16px;
+
+    }
+}
